@@ -137,9 +137,8 @@ write.csv(svm1.pred, file = "titanic_survivalsvm1.csv")
 svm2 <- svm(formula = Survived ~ ., data = compTrain2)
 svm2.pred <- predict(svm2, compTest2)
 write.csv(svm2.pred, file = "titanic_survivalsvm2.csv")
-
-
-#Untuned Support Vector Machines with pmm for imputation.
+#Your submission scored 0.77512.
+#Position 3990.
 
 #####################################
 ### TUNED SUPPORT VECTOR MACHINES ###
@@ -154,6 +153,7 @@ tunedModel1 <- tuneResult1$best.model
 
 tsvm1.pred <- predict(tunedModel1, compTest1)
 write.csv(tsvm1.pred, file = "titanic_survivaltsvm1.csv")
+#Your submission scored 0.76555.
 
 tuneResult2 <- tune(svm, Survived ~ ., data = compTrain2, 
                     ranges = list(epsilon = seq(0, 1, 0.1), cost = 2^(2:9)))
@@ -163,3 +163,6 @@ tunedModel2 <- tuneResult2$best.model
 
 tsvm2.pred <- predict(tunedModel2, compTest2)
 write.csv(tsvm2.pred, file = "titanic_survivaltsvm2.csv")
+#Your submission scored 0.78947.
+#Position 2211.
+
