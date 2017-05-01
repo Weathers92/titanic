@@ -140,6 +140,21 @@ write.csv(svm2.pred, file = "titanic_survivalsvm2.csv")
 #Your submission scored 0.77512.
 #Position 3990.
 
+svm3 <- svm(formula = Survived ~ ., data = compTrain2, kernel = "polynomial")
+svm3.pred <- predict(svm3, compTest2)
+write.csv(svm3.pred, file = "titanic_survivalsvm3.csv")
+#Your submission scored 0.71770.
+
+svm4 <- svm(formula = Survived ~ ., data = compTrain2, kernel = "radial")
+svm4.pred <- predict(svm4, compTest2)
+write.csv(svm4.pred, file = "titanic_survivalsvm4.csv")
+#Your submission scored 0.77512.
+
+svm5 <- svm(formula = Survived ~ ., data = compTrain2, kernel = "sigmoid")
+svm5.pred <- predict(svm5, compTest2)
+write.csv(svm4.pred, file = "titanic_survivalsvm5.csv")
+#Your submission scored 0.77512.
+
 #####################################
 ### TUNED SUPPORT VECTOR MACHINES ###
 #####################################
@@ -164,5 +179,16 @@ tunedModel2 <- tuneResult2$best.model
 tsvm2.pred <- predict(tunedModel2, compTest2)
 write.csv(tsvm2.pred, file = "titanic_survivaltsvm2.csv")
 #Your submission scored 0.78947.
-#Position 2211.
+#Position 2210.
+
+library(caret)
+tunedModel3 <- train(Survived ~ ., data = compTrain1, method = 'svmLinear2', trControl = trainControl(method = "repeatedcv", number = 10, repeats = 3), tuneLength = 5)
+tsvm3.pred <- predict(tunedModel3, compTest1)
+write.csv(tsvm3.pred, file = "titanic_survivaltsvm3.csv")
+#Your submission scored 0.76555.
+
+tunedModel4 <- train(Survived ~ ., data = compTrain2, method = 'svmLinear2', trControl = trainControl(method = "repeatedcv", number = 10, repeats = 3), tuneLength = 5)
+tsvm4.pred <- predict(tunedModel4, compTest2)
+write.csv(tsvm4.pred, file = "titanic_survivaltsvm4.csv")
+#Your submission scored 0.76555.
 
